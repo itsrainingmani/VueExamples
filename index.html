@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My first Vue app</title>
+  <style>
+    div {
+      text-align: -webkit-center;
+      padding-top: 20px;
+      zoom: 1.4;
+    }
+  </style>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js"></script>
+</head>
+<body>
+  <div id="watch-example">
+  <button v-on:click="incLorem">Expand</button>
+  <button v-on:click="decLorem">Contract</button>
+  <p v-for="ans in answer">{{ ans }}</p>
+</div>   
+  
+  <!-- Since there is already a rich ecosystem of ajax libraries    -->
+<!-- and collections of general-purpose utility methods, Vue core -->
+<!-- is able to remain small by not reinventing them. This also   -->
+<!-- gives you the freedom to use what you're familiar with. -->
+
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+var watchExampleVM = new Vue({
+  el: '#watch-example',
+  data: {
+   lorem: [
+	'Lorem ipsum dolor sit amet ipsum accumsan diam enim magnam commodo fusce quam donec mauris tempor nibh rutrum amet lectus quibusdam sodales mauris praesentium.',
+	'Ac varius condimentum suspendisse sodales tincidunt odio sed cras elit aliquet mauris et non pellentesque massa semper lobortis donec laoreet vitae nulla risus tempor atque elit id felis bibendum dignissim.',
+	'Vel sed tellus nec neque non.',
+	'Nec urna donec tincidunt quisque elit.',
+	'Sit suspendisse fusce. Bibendum massa duis eget morbi vulputate quis proin porttitor',
+	'Pede enim voluptas massa laoreet et. A quis vel. Pede morbi iaculis elit scelerisque in mi a con.',
+	'Elit tempor euismod. Tincidunt eget dolorem. Ut nibh nibh. Conubia dapibus neque aliquam ipsum urna. Amet ullamcorper justo adipiscing vivamus eu. Quam ac quam aliquam iaculis lacinia. Proin velit sapien diam curabitur tempor feugiat vestibulum mollis. Parturient id integer nec erat lectus',
+	'Sit con eget vestibulum habitasse velit id lobortis eros platea ante bibendum ligula odio gravida nascetur libero proin id ut auctor morbi pellentesque nulla pharetra pellentesque quis eu dui fermentum nam dolor wisi. Iaculis eget est',
+	'Felis velit magna donec tristique pede. Facilisis tortor elit dictum at consequat. Adipisicing morbi lorem suscipit faucibus sed sem consequat rutrum porta enim duis',
+	'Fringilla ultrices libero mollis vehicula eget. Id in ad. In erat rerum odio vivamus curabitur. Mauris aenean a. Aliquam erat facilisi',
+	'Mollis nunc posuere dui urna aenean. Fusce accumsan praesent. Nonummy tristique odio mattis sed vel integer diam sed. Vulputate maecenas quam',
+	'Faucibus aliquam metus. Dui nisl eget feugiat posuere morbi ligula massa lectus. Nulla nec a. Amet amet luctus lectus dapibus facilisi. Torquent vehicula facilisi. Ante tellus parturient. Lacus tincidunt ipsum quis lorem nam',
+	'Metus vel velit libero lacinia lectus magna malesuada vestibulum. Ac viverra sapien id dui vestibulum',
+	'Egestas consectetuer enim posuere consectetuer maecenas vel aliquam consectetuer in odio laoreet. Cursus vivamus interdum non quis pede.'
+   ],
+   answer: []
+  },
+  methods: {
+    incLorem: _.debounce(
+      function () {
+	var randNum = Math.floor(Math.random()*14)
+	this.answer.push(this.lorem[randNum])
+      },
+    ),
+    decLorem: _.debounce(
+      function () {
+	this.answer.pop()
+      },
+    )	
+  }
+})
+</script>
+</body>
+</html>
